@@ -1,31 +1,114 @@
-.headding{
-    background-color: orange;
-    text-align: center;
+* {
+  box-sizing: border-box;
+  }
+
+body {
+margin: 0;
+padding: 0;
+min-height: 100vh;
+display: flex;
+align-items: center;
+justify-content: center;
+background: #f2f5f9;
+font-family: Arial, sans-serif;
 }
-.headding2{
-    font-style: italic;
-    text-align: center;
+.ram {
+  text-align: center;
+  font-size: 34px;
+  color: black;
 }
-.photo{
-    text-align: center;
+
+/* Login Container */
+.login-container {
+width: 100%;
+max-width: 500px;
+padding: 20px;
 }
-.container{
-    background-color: rgb(209, 132, 212);
+
+/* Login Form */
+#loginForm {
+background-color: #f2f5f9;
+padding: 30px;
+border-radius: 15px;
+box-shadow: 0 5px 20px rgba(199, 188, 188, 0.2);
 }
-.para{
-    font-size: 25px;
-    font-weight: bold;
+
+/* Heading */
+.headding {
+background-color: orange;
+text-align: center;
+padding: 10px;
+border-radius: 8px;
 }
-.para1{
-    font-size: 25px;
-    font-weight: bold;
+
+.headding2 {
+font-style: italic;
+text-align: center;
 }
-.photo:hover{
-    border: yellow 12px dashed;
-    background-color: red;
+
+/* Photo */
+.photo {
+text-align: center;
 }
-span:hover{
-    color: red;
-    font-size: 50px;
-    background-color: black;
+
+.photo:hover {
+border: 12px dashed yellow;
+background-color: red;
+}
+
+/* Paragraph */
+.para {
+font-size: 25px;
+font-weight: bold;
+}
+
+.para1 {
+font-size: 25px;
+font-weight: bold;
+}
+
+/* Text Hover */
+span:hover {
+color: red;
+font-size: 50px;
+background-color: black;
+}
+
+/* Input */
+#loginForm input {
+border-radius: 8px;
+padding: 10px;
+}
+
+/* Login Button */
+#submit {
+width: 100%;
+border-radius: 8px;
+font-weight: bold;
+}
+
+/* Mobile */
+@media (max-width: 576px) {
+
+
+#loginForm {
+    padding: 20px;
+}
+
+
+}
+/* Normal BOM card */
+.bom-card {
+    background: white;
+    border: 1px solid #e1e6eb;
+    border-radius: 12px;
+    padding: 15px;
+    box-shadow: 0 3px 10px rgba(0,0,0,0.06);
+    transition: all 0.3s ease;
+}
+
+.bom-card.highlight {
+    border: 2px solid #0b3d91;
+    box-shadow: 0 0 18px rgba(11,61,145,0.45);
+    transform: translateY(-3px);
 }

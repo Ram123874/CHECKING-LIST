@@ -1,42 +1,91 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>happy Diwali wishes K.N.Janjal Sir</title>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
 
-    <link rel="stylesheet" href="/assets/css/style.css">
+    <title>Login Page</title>
+
+    <!-- Bootstrap CSS -->
+    <link
+        href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
+        rel="stylesheet"
+    >
+
+    <!-- SweetAlert2 CSS -->
+    <link
+        rel="stylesheet"
+        href="https://cdn.jsdelivr.net/npm/sweetalert2@11.7.27/dist/sweetalert2.min.css"
+    >
+
+    <!-- Your CSS -->
+    <link rel="stylesheet" href="assets/css/style.css">
 </head>
-<body>
-   <div class="container">
-    <h1 class='headding'><span>H</span>appy <Span>D</Span>iwali <span>2</span>023</h1>
 
-    <div class="photo">
-        <img src="data:image/jpeg;base64,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" alt="error network" title="happy Diwali wishes Photo">
+<body>
+
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6 offset-md-3">
+
+            <h2 CLASS="ram">JAY SHREE RAM</h2>
+
+                <form id="loginForm">
+
+                    <!-- Username -->
+                    <div class="mb-3">
+                        <label for="username" class="form-label">
+                            USERNAME
+                        </label>
+
+                        <input
+                            type="text"
+                            id="username"
+                            class="form-control"
+                            placeholder="Enter Username"
+                            required
+                        >
+                    </div>
+
+                    <!-- Password -->
+                    <div class="mb-3">
+                        <label for="password" class="form-label">
+                            PASSWORD
+                        </label>
+
+                        <input
+                            type="password"
+                            id="password"
+                            class="form-control"
+                            placeholder="Enter Password"
+                            required
+                        >
+                    </div>
+
+                    <!-- Login Button -->
+                    <div class="mb-3">
+                        <button
+                            type="submit"
+                            class="btn btn-primary"
+                            id="submit"
+                        >
+                            Login
+                        </button>
+                    </div>
+
+                </form>
+
+            </div>
+        </div>
     </div>
 
+    <!-- SweetAlert2 JS -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.7.27/dist/sweetalert2.all.min.js"></script>
 
-    <p class="para1">
-        दिव्यांच्या लख प्रकाशाने
-        उजळलेली आजची रात्र आहे,
-        आपण सर्व मिळून हा
-        पवित्र सण साजरा करूया,
-        कारण आज सर्व सणामधील सर्वात
-        मोठा सण दिवाळी आहे
-        आपणास व आपल्या परिवारास
-        दिवाळीच्या हार्दिक शुभेच्छा
-        2023
-    </p> 
+    <!-- Your JavaScript -->
+    <script src="assets/js/app.js"></script>
     
-    <p class="para">
-        Deepavali ka pawan tohar, lekar aayi aapke jeevan mein khushiyan appar. samridhi padhare aapke dwar, Saare spne ho aapke saakar. Wish you a very Happy Diwali 2023!
-    </p>
-
-    <h2 class="headding2">
-        From: K.N.Janjal Sir.{RENUKADEVI M.V. PIMPALAGAON RE}
-    </h2>
-   </div>
-
 </body>
+
 </html>

@@ -1,0 +1,1439 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title> SLL - BOM DB DEPT</title>
+
+
+<style>
+
+/* =====================================================
+   GLOBAL
+===================================================== */
+
+*{
+    box-sizing:border-box;
+    margin:0;
+    padding:0;
+    font-family:Arial,Helvetica,sans-serif;
+}
+
+body{
+    background:#eef3f8;
+    color:#222;
+}
+
+
+/* =====================================================
+   HEADER
+===================================================== */
+
+.header{
+    background:#0b3d91;
+    color:white;
+
+    padding:15px 25px;
+
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+
+    box-shadow:0 3px 12px rgba(0,0,0,0.18);
+}
+
+.header-title{
+    font-size:24px;
+    font-weight:bold;
+    text-align:center;
+}
+
+.header-subtitle{
+    font-size:13px;
+    margin-top:4px;
+    opacity:.9;
+}
+
+.logout-btn{
+    background:#dc3545;
+    color:white;
+
+    border:none;
+    padding:10px 18px;
+
+    border-radius:7px;
+
+    cursor:pointer;
+    font-weight:bold;
+}
+
+.logout-btn:hover{
+    background:#b02a37;
+}
+
+
+/* =====================================================
+   MAIN
+===================================================== */
+
+.main{
+    max-width:1450px;
+    margin:25px auto;
+    padding:0 18px;
+}
+
+
+/* =====================================================
+   SEARCH CARD
+===================================================== */
+
+.search-card{
+    background:white;
+
+    padding:22px;
+
+    border-radius:12px;
+
+    box-shadow:0 4px 18px rgba(0,0,0,.10);
+
+    margin-bottom:20px;
+}
+
+.search-title{
+    color:#0b3d91;
+
+    font-size:22px;
+    font-weight:bold;
+
+    margin-bottom:16px;
+}
+
+
+/* =====================================================
+   SEARCH ROW
+===================================================== */
+
+.search-row{
+    display:grid;
+
+    grid-template-columns:
+        1fr 230px 95px 95px;
+
+    gap:10px;
+
+    align-items:end;
+}
+
+
+/* =====================================================
+   INPUT GROUP
+===================================================== */
+
+.input-group{
+    display:flex;
+    flex-direction:column;
+    gap:6px;
+}
+
+.input-label{
+    font-size:12px;
+    font-weight:bold;
+    color:#444;
+}
+
+.search-input,
+.search-select{
+
+    height:42px;
+
+    border:1px solid #ccd4df;
+
+    border-radius:6px;
+
+    padding:0 12px;
+
+    font-size:13px;
+
+    outline:none;
+
+    background:white;
+}
+
+.search-input:focus,
+.search-select:focus{
+
+    border-color:#0b3d91;
+
+    box-shadow:
+        0 0 0 2px rgba(11,61,145,.10);
+}
+
+
+/* =====================================================
+   BUTTONS
+===================================================== */
+
+.search-btn{
+
+    height:42px;
+
+    border:none;
+
+    border-radius:6px;
+
+    background:#0b3d91;
+
+    color:white;
+
+    font-weight:bold;
+
+    cursor:pointer;
+}
+
+.search-btn:hover{
+    background:#062b68;
+}
+
+.clear-btn{
+
+    height:42px;
+
+    border:none;
+
+    border-radius:6px;
+
+    background:#6c757d;
+
+    color:white;
+
+    font-weight:bold;
+
+    cursor:pointer;
+}
+
+.clear-btn:hover{
+    background:#495057;
+}
+
+
+/* =====================================================
+   COUNT
+===================================================== */
+
+.found-bar{
+
+    margin-top:12px;
+
+    background:#edf3f7;
+
+    border-radius:5px;
+
+    padding:8px 12px;
+
+    color:#163c5e;
+
+    font-size:13px;
+
+    font-weight:bold;
+}
+
+
+/* =====================================================
+   BOM GRID
+===================================================== */
+
+.bom-grid{
+
+    display:grid;
+
+    grid-template-columns:
+        repeat(2, minmax(0,1fr));
+
+    gap:18px;
+}
+
+
+/* =====================================================
+   BOM CARD
+===================================================== */
+
+.bom-card{
+
+    background:white;
+
+    border-radius:10px;
+
+    border:1px solid #dce3e9;
+
+    overflow:hidden;
+
+    box-shadow:
+        0 3px 12px rgba(0,0,0,.08);
+
+    transition:.2s;
+}
+
+.bom-card:hover{
+
+    box-shadow:
+        0 6px 20px rgba(0,0,0,.13);
+
+    transform:translateY(-2px);
+}
+
+
+/* =====================================================
+   LIVE SEARCH GLOW
+===================================================== */
+
+.bom-card.search-match-glow{
+
+    animation:bomGlow .9s ease-in-out;
+
+    border-color:#0b3d91;
+
+}
+
+@keyframes bomGlow{
+
+    0%{
+        box-shadow:
+            0 0 0 rgba(11,61,145,0);
+    }
+
+    50%{
+        box-shadow:
+            0 0 22px rgba(11,61,145,.55);
+    }
+
+    100%{
+        box-shadow:
+            0 3px 12px rgba(0,0,0,.08);
+    }
+
+}
+
+
+/* =====================================================
+   CARD HEADER
+===================================================== */
+
+.bom-card-header{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:8px;
+
+    padding:13px 15px;
+
+    border-bottom:1px solid #e2e7eb;
+}
+
+.bom-icon{
+
+    background:#dc3545;
+
+    color:white;
+
+    width:17px;
+    height:17px;
+
+    border-radius:3px;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    font-size:11px;
+}
+
+.fg-number{
+
+    color:#1554a5;
+
+    font-size:15px;
+
+    font-weight:bold;
+}
+
+.bom-badge{
+
+    background:#e5f4e8;
+
+    color:#2d7540;
+
+    font-size:9px;
+
+    padding:3px 6px;
+
+    border-radius:4px;
+
+    font-weight:bold;
+}
+
+
+/* =====================================================
+   CHARACTERISTICS
+===================================================== */
+
+.characteristics{
+
+    padding:8px 15px 14px;
+}
+
+.characteristic{
+
+    display:grid;
+
+    grid-template-columns:145px 1fr;
+
+    min-height:34px;
+
+    align-items:center;
+
+    border-bottom:1px solid #edf0f2;
+
+    font-size:12px;
+}
+
+.characteristic:last-child{
+    border-bottom:none;
+}
+
+.characteristic-name{
+
+    font-weight:bold;
+
+    color:#30343a;
+}
+
+.characteristic-value{
+
+    color:#333;
+
+    word-break:break-word;
+
+    padding-left:5px;
+}
+
+
+/* =====================================================
+   HIGHLIGHT SEARCH TEXT
+===================================================== */
+
+.search-highlight{
+
+    background:#fff176;
+
+    border-radius:3px;
+
+    padding:1px 3px;
+
+    font-weight:bold;
+}
+
+
+/* =====================================================
+   NO RESULT
+===================================================== */
+
+.no-result{
+
+    grid-column:1/-1;
+
+    background:white;
+
+    padding:50px;
+
+    text-align:center;
+
+    border-radius:10px;
+
+    color:#777;
+
+    box-shadow:0 3px 12px rgba(0,0,0,.08);
+}
+
+
+/* =====================================================
+   FOOTER
+===================================================== */
+
+.footer{
+
+    text-align:center;
+
+    padding:25px;
+
+    color:#68717a;
+
+    font-size:12px;
+}
+
+
+/* =====================================================
+   TABLET
+===================================================== */
+
+@media(max-width:900px){
+
+    .search-row{
+
+        grid-template-columns:
+            1fr 1fr;
+
+    }
+
+    .bom-grid{
+
+        grid-template-columns:1fr;
+
+    }
+
+}
+
+
+/* =====================================================
+   MOBILE
+===================================================== */
+
+@media(max-width:600px){
+
+    .header{
+
+        flex-direction:column;
+
+        gap:12px;
+
+        text-align:center;
+    }
+
+    .header-title{
+
+        font-size:19px;
+    }
+
+    .search-row{
+
+        grid-template-columns:1fr;
+
+    }
+
+    .bom-grid{
+
+        grid-template-columns:1fr;
+
+    }
+
+    .characteristic{
+
+        grid-template-columns:135px 1fr;
+
+        font-size:11px;
+    }
+
+}
+
+</style>
+
+</head>
+
+
+<body>
+
+
+<!-- =====================================================
+     HEADER
+===================================================== -->
+
+<header class="header">
+
+    <div>
+
+        <div class="header-title">
+            📋 DASHBOARD DEPT TD - 2026
+        </div>
+
+        <div class="header-subtitle">
+            
+        </div>
+
+    </div>
+
+
+    <button
+        class="logout-btn"
+        onclick="logout()"
+    >
+        🔒 Logout
+    </button>
+
+</header>
+
+
+
+<!-- =====================================================
+     MAIN
+===================================================== -->
+
+<main class="main">
+
+
+<!-- =====================================================
+     SEARCH
+===================================================== -->
+
+<section class="search-card">
+
+    <div class="search-title">
+         SEARCHING BOM
+    </div>
+
+
+    <div class="search-row">
+
+
+        <!-- SEARCH VALUE -->
+
+        <div class="input-group">
+
+            <label class="input-label">
+                Search value
+            </label>
+
+            <input
+                type="text"
+                id="searchInput"
+                class="search-input"
+                placeholder="Enter FG No, Model, Material, Cluster, Country, etc."
+                oninput="searchBOM()"
+                onkeydown="handleEnter(event)"
+            >
+
+        </div>
+
+
+
+        <!-- SEARCH IN -->
+
+        <div class="input-group">
+
+            <label class="input-label">
+                Search in
+            </label>
+
+            <select
+                id="searchField"
+                class="search-select"
+                onchange="searchBOM()"
+            >
+
+                <option value="all">
+                    Search All 14 Characteristics
+                </option>
+
+                <option value="partNo">
+                    FG Number
+                </option>
+
+                <option value="dashboarddescription">
+                    DB Description
+                </option>
+
+                <option value="country">
+                    Country
+                </option>
+
+                <option value="plasticdashboard">
+                    Plastic DB
+                </option>
+
+                <option value="covercluster">
+                    Cover Cluster
+                </option>
+
+                <option value="InstrumentCluster">
+                    Instrument Cluster
+                </option>
+
+                <option value="Lockset">
+                    Lock Set
+                </option>
+
+                <option value="Onofflabel">
+                    ON/OFF Label
+                </option>
+
+                <option value="Fmradiolabel">
+                    FM Radio
+                </option>
+
+                <option value="plug">
+                    Plug
+                </option>
+
+                <option value="button">
+                    Button
+                </option>
+
+                <option value="label">
+                    Instruction Label
+                </option>
+
+                <option value="shocketcharger">
+                    Socket Charger
+                </option>
+
+                <option value="dashboardcolour">
+                    DB Colour
+                </option>
+
+            </select>
+
+        </div>
+
+
+
+        <!-- SEARCH -->
+
+        <button
+            class="search-btn"
+            onclick="searchBOM()"
+        >
+             SEARCH
+        </button>
+
+
+
+        <!-- CLEAR -->
+
+        <button
+            class="clear-btn"
+            onclick="clearSearch()"
+        >
+            ↻ CLEAR
+        </button>
+
+
+    </div>
+
+
+    <!-- FOUND BOM -->
+
+    <div
+        class="found-bar"
+        id="foundCount"
+    >
+        Found BOM: 0
+    </div>
+
+
+</section>
+
+
+
+<!-- =====================================================
+     BOM CARDS
+===================================================== -->
+
+<div
+    class="bom-grid"
+    id="bomContainer"
+>
+</div>
+
+
+</main>
+
+
+
+<!-- =====================================================
+     FOOTER
+===================================================== -->
+
+<footer class="footer">
+
+    SLL - BOM Dashboard
+
+</footer>
+
+
+
+<!-- =====================================================
+     BOM DATA
+===================================================== -->
+
+<script src="assets/js/bom-data.js"></script>
+
+
+
+<!-- =====================================================
+     DASHBOARD JAVASCRIPT
+===================================================== -->
+
+<script>
+
+
+/* =====================================================
+   ESCAPE HTML
+===================================================== */
+
+function escapeHTML(value){
+
+    return String(value ?? "")
+        .replace(/&/g,"&amp;")
+        .replace(/</g,"&lt;")
+        .replace(/>/g,"&gt;")
+        .replace(/"/g,"&quot;")
+        .replace(/'/g,"&#039;");
+
+}
+
+
+/* =====================================================
+   HIGHLIGHT SEARCH VALUE
+===================================================== */
+
+function highlightText(value, searchValue){
+
+    const safeValue = escapeHTML(value || "NA");
+
+    if(!searchValue){
+        return safeValue;
+    }
+
+    const escapedSearch = searchValue
+        .replace(/[.*+?^${}()|[\]\\]/g,"\\$&");
+
+    const regex = new RegExp(
+        "(" + escapedSearch + ")",
+        "gi"
+    );
+
+    return safeValue.replace(
+        regex,
+        '<span class="search-highlight">$1</span>'
+    );
+
+}
+
+
+/* =====================================================
+   DISPLAY BOM
+===================================================== */
+
+function displayBOM(data){
+
+    const container =
+        document.getElementById("bomContainer");
+
+    const count =
+        document.getElementById("foundCount");
+
+    const searchInput =
+        document.getElementById("searchInput");
+
+    const searchValue =
+        searchInput.value
+            .trim()
+            .toLowerCase();
+
+
+    count.innerText =
+        "Found BOM: " + data.length;
+
+
+    /* =================================================
+       NO RESULT
+    ================================================= */
+
+    if(data.length === 0){
+
+        container.innerHTML = `
+
+            <div class="no-result">
+
+                ❌ <b>No BOM found</b>
+
+                <br><br>
+
+                Please try another search value.
+
+            </div>
+
+        `;
+
+        return;
+    }
+
+
+    let html = "";
+
+
+    /* =================================================
+       CREATE BOM CARDS
+    ================================================= */
+
+    data.forEach(function(item){
+
+        html += `
+
+        <div class="bom-card search-match-glow">
+
+
+            <!-- CARD HEADER -->
+
+            <div class="bom-card-header">
+
+                <div class="bom-icon">
+                    ▪
+                </div>
+
+                <div class="fg-number">
+
+                    ${highlightText(
+                        item.partNo || "NA",
+                        searchValue
+                    )}
+
+                </div>
+
+                <div class="bom-badge">
+                    BOM
+                </div>
+
+            </div>
+
+
+
+            <!-- CHARACTERISTICS -->
+
+            <div class="characteristics">
+
+
+                <!-- 1 -->
+
+                <div class="characteristic">
+
+                    <div class="characteristic-name">
+                        1. FG Number
+                    </div>
+
+                    <div class="characteristic-value">
+
+                        ${highlightText(
+                            item.partNo || "NA",
+                            searchValue
+                        )}
+
+                    </div>
+
+                </div>
+
+
+
+                <!-- 2 -->
+
+                <div class="characteristic">
+
+                    <div class="characteristic-name">
+                        2. DB Description
+                    </div>
+
+                    <div class="characteristic-value">
+
+                        ${highlightText(
+                            item.dashboarddescription || "NA",
+                            searchValue
+                        )}
+
+                    </div>
+
+                </div>
+
+
+
+                <!-- 3 -->
+
+                <div class="characteristic">
+
+                    <div class="characteristic-name">
+                        3. Country
+                    </div>
+
+                    <div class="characteristic-value">
+
+                        ${highlightText(
+                            item.country || "NA",
+                            searchValue
+                        )}
+
+                    </div>
+
+                </div>
+
+
+
+                <!-- 4 -->
+
+                <div class="characteristic">
+
+                    <div class="characteristic-name">
+                        4. Plastic DB
+                    </div>
+
+                    <div class="characteristic-value">
+
+                        ${highlightText(
+                            item.plasticdashboard || "NA",
+                            searchValue
+                        )}
+
+                    </div>
+
+                </div>
+
+
+
+                <!-- 5 -->
+
+                <div class="characteristic">
+
+                    <div class="characteristic-name">
+                        5. Cover Cluster
+                    </div>
+
+                    <div class="characteristic-value">
+
+                        ${highlightText(
+                            item.covercluster || "NA",
+                            searchValue
+                        )}
+
+                    </div>
+
+                </div>
+
+
+
+                <!-- 6 -->
+
+                <div class="characteristic">
+
+                    <div class="characteristic-name">
+                        6. Instrument Cluster
+                    </div>
+
+                    <div class="characteristic-value">
+
+                        ${highlightText(
+                            item.InstrumentCluster || "NA",
+                            searchValue
+                        )}
+
+                    </div>
+
+                </div>
+
+
+
+                <!-- 7 -->
+
+                <div class="characteristic">
+
+                    <div class="characteristic-name">
+                        7. Lock Set
+                    </div>
+
+                    <div class="characteristic-value">
+
+                        ${highlightText(
+                            item.Lockset || "NA",
+                            searchValue
+                        )}
+
+                    </div>
+
+                </div>
+
+
+
+                <!-- 8 -->
+
+                <div class="characteristic">
+
+                    <div class="characteristic-name">
+                        8. ON/OFF Label
+                    </div>
+
+                    <div class="characteristic-value">
+
+                        ${highlightText(
+                            item.Onofflabel || "NA",
+                            searchValue
+                        )}
+
+                    </div>
+
+                </div>
+
+
+
+                <!-- 9 -->
+
+                <div class="characteristic">
+
+                    <div class="characteristic-name">
+                        9. FM Radio
+                    </div>
+
+                    <div class="characteristic-value">
+
+                        ${highlightText(
+                            item.Fmradiolabel || "NA",
+                            searchValue
+                        )}
+
+                    </div>
+
+                </div>
+
+
+
+                <!-- 10 -->
+
+                <div class="characteristic">
+
+                    <div class="characteristic-name">
+                        10. Plug
+                    </div>
+
+                    <div class="characteristic-value">
+
+                        ${highlightText(
+                            item.plug || "NA",
+                            searchValue
+                        )}
+
+                    </div>
+
+                </div>
+
+
+
+                <!-- 11 -->
+
+                <div class="characteristic">
+
+                    <div class="characteristic-name">
+                        11. Button
+                    </div>
+
+                    <div class="characteristic-value">
+
+                        ${highlightText(
+                            item.button || "NA",
+                            searchValue
+                        )}
+
+                    </div>
+
+                </div>
+
+
+
+                <!-- 12 -->
+
+                <div class="characteristic">
+
+                    <div class="characteristic-name">
+                        12. Instruction Label
+                    </div>
+
+                    <div class="characteristic-value">
+
+                        ${highlightText(
+                            item.label || "NA",
+                            searchValue
+                        )}
+
+                    </div>
+
+                </div>
+
+
+
+                <!-- 13 -->
+
+                <div class="characteristic">
+
+                    <div class="characteristic-name">
+                        13. Socket Charger
+                    </div>
+
+                    <div class="characteristic-value">
+
+                        ${highlightText(
+                            item.shocketcharger || "NA",
+                            searchValue
+                        )}
+
+                    </div>
+
+                </div>
+
+
+
+                <!-- 14 -->
+
+                <div class="characteristic">
+
+                    <div class="characteristic-name">
+                        14. DB Colour
+                    </div>
+
+                    <div class="characteristic-value">
+
+                        ${highlightText(
+                            item.dashboardcolour || "NA",
+                            searchValue
+                        )}
+
+                    </div>
+
+                </div>
+
+
+            </div>
+
+        </div>
+
+        `;
+
+    });
+
+
+    container.innerHTML = html;
+
+}
+
+
+
+/* =====================================================
+   SEARCH BOM - LIVE SEARCH
+===================================================== */
+
+function searchBOM(){
+
+    const input =
+        document.getElementById("searchInput");
+
+    const field =
+        document.getElementById("searchField");
+
+
+    if(!input || !field){
+        return;
+    }
+
+
+    const value =
+        input.value
+            .trim()
+            .toLowerCase();
+
+
+    const selectedField =
+        field.value;
+
+
+    /* =================================================
+       EMPTY SEARCH
+    ================================================= */
+
+    if(value === ""){
+
+        displayBOM(bomData);
+
+        return;
+    }
+
+
+    let filtered = [];
+
+
+    /* =================================================
+       SEARCH ALL
+    ================================================= */
+
+    if(selectedField === "all"){
+
+        filtered =
+            bomData.filter(function(item){
+
+                return Object.values(item).some(
+                    function(itemValue){
+
+                        return String(itemValue)
+                            .toLowerCase()
+                            .includes(value);
+
+                    }
+                );
+
+            });
+
+    }
+
+
+    /* =================================================
+       SPECIFIC FIELD
+    ================================================= */
+
+    else{
+
+        filtered =
+            bomData.filter(function(item){
+
+                const itemValue =
+                    item[selectedField];
+
+
+                if(
+                    itemValue === undefined ||
+                    itemValue === null
+                ){
+
+                    return false;
+
+                }
+
+
+                return String(itemValue)
+                    .toLowerCase()
+                    .includes(value);
+
+            });
+
+    }
+
+
+    /* =================================================
+       DISPLAY LIVE RESULT
+    ================================================= */
+
+    displayBOM(filtered);
+
+}
+
+
+
+/* =====================================================
+   CLEAR SEARCH
+===================================================== */
+
+function clearSearch(){
+
+    const input =
+        document.getElementById("searchInput");
+
+    const field =
+        document.getElementById("searchField");
+
+
+    input.value = "";
+
+    field.value = "all";
+
+
+    displayBOM(bomData);
+
+
+    input.focus();
+
+}
+
+
+
+/* =====================================================
+   ENTER KEY
+===================================================== */
+
+function handleEnter(event){
+
+    if(event.key === "Enter"){
+
+        event.preventDefault();
+
+        searchBOM();
+
+    }
+
+}
+
+
+
+/* =====================================================
+   LOGOUT
+===================================================== */
+
+function logout(){
+
+    window.location.href =
+        "index.html";
+
+}
+
+
+
+/* =====================================================
+   PAGE LOAD
+===================================================== */
+
+document.addEventListener(
+    "DOMContentLoaded",
+    function(){
+
+        if(
+            typeof bomData === "undefined"
+        ){
+
+            document.getElementById(
+                "bomContainer"
+            ).innerHTML = `
+
+                <div class="no-result">
+
+                    ❌ BOM data file not found.
+
+                    <br><br>
+
+                    Please check:
+
+                    <b>assets/js/bom-data.js</b>
+
+                </div>
+
+            `;
+
+            return;
+        }
+
+
+        displayBOM(bomData);
+
+    }
+);
+
+</script>
+
+
+</body>
+
+</html>
