@@ -11,7 +11,7 @@ event.preventDefault();
 const username = usernameControl.value.trim();
 const password = passwordControl.value;
 
-if (username === "JAY SHREE RAM" && password === "HANUMAN") {
+if (username === "JAY SHREE RAM" && password === "HANU2026") {
 
     Swal.fire({
         icon: "success",
