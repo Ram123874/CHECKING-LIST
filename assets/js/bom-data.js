@@ -613,7 +613,7 @@ const bomData = [
 {
   partNo:"52AU0368",
   dashboarddescription:"RE COMPACT PET 4S (236 CC)",
-  country:"(CONGO,GHANA,SIERRA LEONE) EXPORT",
+  country:"(CONGO,GHANA,SIERRA LEONE,LIBERIA,HAITI) EXPORT",
   plasticdashboard:"52RA0178",
   covercluster:"52AU0241",
   InstrumentCluster:"AA191189",
@@ -970,16 +970,16 @@ const bomData = [
 {
   partNo:"52AU0401",
   dashboarddescription:"RE COMPACT PET 4V ",
-  country:"EXPORT",
+  country:"PHILIPPINES EXPORT",
   plasticdashboard:"52AM0390",
   covercluster:"52AU0241",
   InstrumentCluster:"AU402407/AU402408",
   Lockset:"52AU0370",
   Onofflabel:"AA231409",
   Fmradiolabel:"AA2339",
-  plug:"52AU0356",
+  plug:"52AZ0604",
   label:"NA",
-  button:"IDSS",
+  button:"DOT,H,IDSS",
   shocketcharger:"AF201466",
   dashboardcolour:"BROWN"
 },
