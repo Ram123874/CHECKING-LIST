@@ -1015,7 +1015,24 @@ const bomData = [
   button:"NA",
   shocketcharger:"AN201243",
   dashboardcolour:"BROWN"
+},
+{
+  partNo:"52AM0539",
+  dashboarddescription:"RE COMPACT LPG EXPORT",
+  country:" EXPORT",
+  plasticdashboard:"52AF0658",
+  covercluster:"52AF0668",
+  InstrumentCluster:"AM191049",
+  Lockset:"52AF1101",
+  Onofflabel:"AA231409",
+  Fmradiolabel:"NA",
+  plug:"NA",
+  label:"24161358",
+  button:"DOT,-,LPG EXPORT",
+  shocketcharger:"AF201466",
+  dashboardcolour:"BROWN"
 }
+
 
 ];
 
