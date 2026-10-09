@@ -123,6 +123,7 @@ const bomData = [
   dashboardcolour:"GREY"
 },
 
+
 {
   partNo:"52AN0756",
   dashboarddescription:"BAJAJ MAXIMA C CNG LONGER TRAY OBD 2B",
@@ -578,6 +579,24 @@ const bomData = [
 },
 
 {
+  partNo:"52AY0245",
+  dashboarddescription:"BAJAJ MAXIMA Z PET BLACK COLOUR",
+  country:"EXPORT",
+  plasticdashboard:"52AA2753",
+  covercluster:"52AU0241",
+  InstrumentCluster:"AY402415",
+  Lockset:"52AY0241",
+  Onofflabel:"AA231409",
+  Fmradiolabel:"AA2339",
+  plug:"52AZ0604",
+  label:"NA",
+  button:"H,DOT",
+  shocketcharger:"AF201466",
+  dashboardcolour:"BLACK"
+},
+
+
+{
   partNo:"52AF1110",
   dashboarddescription:"RE CNG AIR COLLED OBD 2B",
   country:"DOM",
@@ -590,6 +609,24 @@ const bomData = [
   plug:"52AZ0604",
   label:"24161358",
   button:"CNG,H,DOT,IDSS",
+  shocketcharger:"AF201464",
+  dashboardcolour:"BROWN"
+},
+
+
+{
+  partNo:"52AN0788",
+  dashboarddescription:"RE CNG CARGO AIR COLLED OBD 2B",
+  country:"DOM",
+  plasticdashboard:"52AN0786",
+  covercluster:"AH181702",
+  InstrumentCluster:"AT402455,AT402456",
+  Lockset:"52AN0787",
+  Onofflabel:"AA231409",
+  Fmradiolabel:"NA",
+  plug:"52AZ0604",
+  label:"24161358",
+  button:"AT402413",
   shocketcharger:"AF201464",
   dashboardcolour:"BROWN"
 },
@@ -906,16 +943,16 @@ const bomData = [
 {
   partNo:"52AM0493",
   dashboarddescription:"RE COMPACT LPG 250",
-  country:" EXPORT",
+  country:" PERU EXPORT",
   plasticdashboard:"52AF0658",
   covercluster:"52AU0241",
   InstrumentCluster:"AM191063",
   Lockset:"52AF1101",
   Onofflabel:"AA231409",
   Fmradiolabel:"52AA2339",
-  plug:"NA",
+  plug:"52AZ0604",
   label:"24161358",
-  button:"NA",
+  button:"LPG EXPORT",
   shocketcharger:"AF201466",
   dashboardcolour:"BROWN"
 },
@@ -974,7 +1011,7 @@ const bomData = [
   plasticdashboard:"52AM0390",
   covercluster:"52AU0241",
   InstrumentCluster:"AU402407/AU402408",
-  Lockset:"52AU0370",
+  Lockset:"52AU0475",
   Onofflabel:"AA231409",
   Fmradiolabel:"AA2339",
   plug:"52AZ0604",
@@ -1019,7 +1056,7 @@ const bomData = [
 {
   partNo:"52AM0539",
   dashboarddescription:"RE COMPACT LPG EXPORT",
-  country:" EXPORT",
+  country:"HAITI EXPORT",
   plasticdashboard:"52AF0658",
   covercluster:"52AF0668",
   InstrumentCluster:"AM191049",
